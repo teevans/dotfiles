@@ -39,3 +39,5 @@ vim.opt.confirm = true
 vim.opt.undofile = true
 vim.opt.backup = true
 vim.opt.backupdir:remove('.')
+
+vim.opt.signcolumn = 'yes:1'

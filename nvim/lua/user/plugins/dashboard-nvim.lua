@@ -24,7 +24,7 @@ return {
         '',
         '',
         '',
-        'So long, and thanks for all the fish.',
+        'If only we knew where we were going',
         ''},
       center = {
         { icon = '  ', desc = 'New file', action = 'enew' },
