@@ -6,11 +6,10 @@ vim.api.nvim_set_keymap('n', '<C-H>', '<C-W><C-H>', { noremap = true })
 
 -- My Fun Stuff
 vim.api.nvim_set_keymap('n', '<leader>m',':w<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Bslash>',':NvimTreeToggle<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>r',':NvimTreeRefresh<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>fr',':Rg<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader><CR>', ':noh<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>w', ':bd<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'sp', ':vsplit <CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'sv', ':split <CR>', { noremap = true })
 

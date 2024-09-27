@@ -12,6 +12,7 @@ vim.opt.wrap = false
 vim.opt.number = true
 
 vim.opt.wildmode = 'longest:full,full'
+vim.opt.completeopt = 'menuone,longest,preview'
 
 vim.opt.title = true
 vim.opt.mouse = 'a'
@@ -40,4 +41,4 @@ vim.opt.undofile = true
 vim.opt.backup = true
 vim.opt.backupdir:remove('.')
 
-vim.opt.signcolumn = 'yes:1'
+vim.opt.signcolumn = 'yes:2'
