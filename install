@@ -23,3 +23,7 @@ ln -s $DOTFILES/nvim $HOME/.config/nvim
 
 rm -rf $HOME/.config/phpactor
 ln -s $DOTFILES/phpactor $HOME/.config/phpactor
+
+rm -rf $HOME/.config/ghostty/config
+mkdir -p $HOME/.config/ghostty
+ln -s $DOTFILES/ghostty/config $HOME/.config/ghostty/config
