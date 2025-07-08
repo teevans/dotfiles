@@ -7,8 +7,7 @@ return {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'b0o/schemastore.nvim',
-    { 'jose-elias-alvarez/null-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
-    'jayp0521/mason-null-ls.nvim',
+    { 'nvimtools/none-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
   },
   config = function()
     -- Setup Mason to automatically install LSP servers
@@ -120,30 +119,33 @@ return {
       }
     })
 
-    -- null-ls
-    local null_ls = require('null-ls')
+    -- none-ls
+    local has_none_ls, none_ls = pcall(require, 'none-ls')
+    if not has_none_ls then
+      return
+    end
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-    null_ls.setup({
+    none_ls.setup({
       temp_dir = '/tmp',
       sources = {
-        null_ls.builtins.diagnostics.eslint_d.with({
+        none_ls.builtins.diagnostics.eslint_d.with({
           condition = function(utils)
             return utils.root_has_file({ '.eslintrc.js' })
           end,
         }),
-        -- null_ls.builtins.diagnostics.phpstan, -- TODO: Only if config file
-        null_ls.builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
-        null_ls.builtins.formatting.eslint_d.with({
+        -- none_ls.builtins.diagnostics.phpstan, -- TODO: Only if config file
+        none_ls.builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+        none_ls.builtins.formatting.eslint_d.with({
           condition = function(utils)
             return utils.root_has_file({ '.eslintrc.js', '.eslintrc.json' })
           end,
         }),
-        null_ls.builtins.formatting.pint.with({
+        none_ls.builtins.formatting.pint.with({
           condition = function(utils)
             return utils.root_has_file({ 'vendor/bin/pint' })
           end,
         }),
-        null_ls.builtins.formatting.prettier.with({
+        none_ls.builtins.formatting.prettier.with({
           condition = function(utils)
             return utils.root_has_file({ '.prettierrc', '.prettierrc.json', '.prettierrc.yml', '.prettierrc.js',
               'prettier.config.js' })
@@ -164,7 +166,6 @@ return {
       end,
     })
 
-    require('mason-null-ls').setup({ automatic_installation = true })
 
     -- Keymaps
     vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
@@ -188,9 +189,9 @@ return {
     })
 
     -- Sign configuration
-    vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-    vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-    vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-    vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+    vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
+    vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
+    vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
+    vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
   end,
 }

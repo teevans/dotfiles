@@ -31,7 +31,7 @@ alias ls='ls -al --color=auto'
 alias gs="git status"
 alias gt="git tag -a"
 alias ga="git add ."
-alias gc="git commit -m \"CI\""
+alias gc="git commit"
 alias gp="git push"
 alias gti="git"
 alias gd="git diff HEAD"
@@ -52,7 +52,9 @@ alias kc='kubectx'
 
 alias pa='php artisan'
 alias paf='php artisan migrate:fresh --seed'
-
+alias npm="pnpm"
+alias plog="vim ./storage/logs/laravel.log"
+alias rlog="rm ./storage/logs/laravel.log"
 
 # ===========
 # Herd
@@ -79,3 +81,16 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/tevans/Library/Application Support/Herd/config/php/84/"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+
+# Java for Android development
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=/Users/tevans/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
