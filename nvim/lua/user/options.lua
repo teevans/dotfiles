@@ -10,6 +10,7 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 
 vim.opt.number = true
+vim.opt.relativenumber = true
 
 vim.opt.wildmode = 'longest:full,full'
 vim.opt.completeopt = 'menuone,longest,preview'

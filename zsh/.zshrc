@@ -38,6 +38,23 @@ alias gd="git diff HEAD"
 alias gpom="git push origin master && git push origin --tags"
 alias lg="git log --oneline --graph --color"
 alias cl='clear'
+alias so='. ~/.zshrc'
+alias viz='vim ~/.zshrc'
+alias vib='vim ~/.bookmarks'
+alias vis='vim ~/.ssh/config'
+
+# Bookmark navigation
+function bm {
+    if [[ -f ~/.bookmarks ]]; then
+        local selected=$(cat ~/.bookmarks | fzf --height=40% --reverse --prompt="Select bookmark: ")
+        if [[ -n "$selected" ]]; then
+            # Use eval to expand tilde properly
+            eval "cd $selected"
+        fi
+    else
+        echo "No bookmarks file found at ~/.bookmarks"
+    fi
+}
 
 # ===========
 # K8s Aliases
