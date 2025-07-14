@@ -2,7 +2,7 @@
 # ZSH Setup
 # ===========
 #
-export ZSH="/Users/tevans/.oh-my-zsh"
+export ZSH="/home/tevans/.oh-my-zsh"
 plugins=(
   git
   docker
@@ -42,6 +42,8 @@ alias so='. ~/.zshrc'
 alias viz='vim ~/.zshrc'
 alias vib='vim ~/.bookmarks'
 alias vis='vim ~/.ssh/config'
+alias vih='vim ~/.config/hypr/hyprland.conf'
+alias vin='cd ~/.config/nvim && vim'
 
 # Bookmark navigation
 function bm {
@@ -69,45 +71,30 @@ alias kc='kubectx'
 
 alias pa='php artisan'
 alias paf='php artisan migrate:fresh --seed'
+alias pas='php artisan serve --host=0.0.0.0 --port=8000'
 alias npm="pnpm"
 alias plog="vim ./storage/logs/laravel.log"
 alias rlog="rm ./storage/logs/laravel.log"
 
-# ===========
-# Herd
-# ===========
-# Herd injected NVM configuration
-export NVM_DIR="/Users/tevans/Library/Application Support/Herd/config/nvm"
+
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
-# Herd injected PHP binary.
-export PATH="/Users/tevans/Library/Application Support/Herd/bin/":$PATH
-# Herd injected PHP 8.3 configuration.
-export HERD_PHP_83_INI_SCAN_DIR="/Users/tevans/Library/Application Support/Herd/config/php/83/"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tevans/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tevans/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/tevans/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tevans/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 # pnpm
-export PNPM_HOME="/Users/tevans/Library/pnpm"
+export PNPM_HOME="/home/tevans/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+export PATH="/home/tevans/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/tevans/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
+# Expose
+export PATH="/home/tevans/.config/composer/vendor/bin:$PATH"
 
-# Herd injected PHP 8.4 configuration.
-export HERD_PHP_84_INI_SCAN_DIR="/Users/tevans/Library/Application Support/Herd/config/php/84/"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
-
-# Java for Android development
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
-export ANDROID_HOME=/Users/tevans/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+eval "$(/home/tevans/.local/bin/mise activate zsh)"

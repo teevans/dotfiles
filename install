@@ -27,3 +27,7 @@ ln -s $DOTFILES/phpactor $HOME/.config/phpactor
 rm -rf $HOME/.config/ghostty/config
 mkdir -p $HOME/.config/ghostty
 ln -s $DOTFILES/ghostty/config $HOME/.config/ghostty/config
+
+rm -rf $HOME/.config/hypr/hyprland.conf
+ln -s $DOTFILES/hypr/hyprland.conf $HOME/.config/hypr/hyprland.conf
+

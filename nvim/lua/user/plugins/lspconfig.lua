@@ -90,6 +90,14 @@ return {
       },
     })
 
+    -- Ruby
+    require('lspconfig').ruby_lsp.setup({
+      init_options = {
+        formatter = 'standard',
+        linters = { 'standard' },
+      },
+    })
+
     -- Tailwind CSS
     require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
 
