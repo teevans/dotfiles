@@ -2,7 +2,15 @@
 # ZSH Setup
 # ===========
 #
-export ZSH="/home/tevans/.oh-my-zsh"
+#
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    home_dir="/Users/$(whoami)"
+elif [[ "$OSTYPE" == "linux"* ]]; then
+    home_dir="/home/$(whoami)"
+fi
+
+export ZSH="$home_dir/.oh-my-zsh"
 plugins=(
   git
   docker
@@ -27,7 +35,7 @@ path=(
 
 alias vim="nvim"
 alias vi="nvim"
-alias ls='ls -al --color=auto'
+alias ls='eza --icons=always -1 --hyperlink -l -h --git --no-permissions --total-size'
 alias gs="git status"
 alias gt="git tag -a"
 alias ga="git add ."
@@ -44,6 +52,7 @@ alias vib='vim ~/.bookmarks'
 alias vis='vim ~/.ssh/config'
 alias vih='vim ~/.config/hypr/hyprland.conf'
 alias vin='cd ~/.config/nvim && vim'
+alias mux='tmuxinator'
 
 # Bookmark navigation
 function bm {
@@ -76,25 +85,27 @@ alias npm="pnpm"
 alias plog="vim ./storage/logs/laravel.log"
 alias rlog="rm ./storage/logs/laravel.log"
 
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
 # pnpm
-export PNPM_HOME="/home/tevans/.local/share/pnpm"
+export PNPM_HOME="$home_dir/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
-export PATH="/home/tevans/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/tevans/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 # Expose
-export PATH="/home/tevans/.config/composer/vendor/bin:$PATH"
+export PATH="/$home_dir/.config/composer/vendor/bin:$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-eval "$(/home/tevans/.local/bin/mise activate zsh)"
+# Mise
+eval "$(/$home_dir/.local/bin/mise activate zsh)"
+
+# Laravel Herd / PHP Config
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Herd injected PHP binary.
+    export PATH="/Users/tevans/Library/Application Support/Herd/bin/":$PATH
+
+    # Herd injected PHP 8.4 configuration.
+    export HERD_PHP_84_INI_SCAN_DIR="/Users/tevans/Library/Application Support/Herd/config/php/84/"
+elif [[ "$OSTYPE" == "linux"* ]]; then
+    export PATH="$home_dir/.config/herd-lite/bin:$PATH"
+    export PHP_INI_SCAN_DIR="/$home_dir/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+fi

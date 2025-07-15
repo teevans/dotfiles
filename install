@@ -31,3 +31,5 @@ ln -s $DOTFILES/ghostty/config $HOME/.config/ghostty/config
 rm -rf $HOME/.config/hypr/hyprland.conf
 ln -s $DOTFILES/hypr/hyprland.conf $HOME/.config/hypr/hyprland.conf
 
+rm -rf $HOME/.config/tmuxinator
+ln -s $DOTFILES/tmuxinator $HOME/.config/tmuxinator

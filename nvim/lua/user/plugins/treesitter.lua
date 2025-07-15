@@ -27,6 +27,7 @@ return {
     auto_install = true,
     autopairs = { enable = true },
     highlight = { enable = true },
+    ignore_install = { "ipkg" },
     indent = {
       enable = true,
       disable = { "yaml" }
