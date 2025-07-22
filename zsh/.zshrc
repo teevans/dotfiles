@@ -35,7 +35,7 @@ path=(
 
 alias vim="nvim"
 alias vi="nvim"
-alias ls='eza --icons=always -1 --hyperlink -l -h --git --no-permissions --total-size'
+alias ls='eza --icons=always -1 --hyperlink -l -h --git --no-permissions'
 alias gs="git status"
 alias gt="git tag -a"
 alias ga="git add ."
@@ -84,6 +84,8 @@ alias pas='php artisan serve --host=0.0.0.0 --port=8000'
 alias npm="pnpm"
 alias plog="vim ./storage/logs/laravel.log"
 alias rlog="rm ./storage/logs/laravel.log"
+
+export EDITOR="nvim"
 
 # pnpm
 export PNPM_HOME="$home_dir/.local/share/pnpm"
